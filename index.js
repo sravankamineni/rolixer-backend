@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const port = 3004;
+const port = process.env.port || 3004;
 
 
 const dbPath = path.join(__dirname, "TransactionsData.db");
@@ -34,7 +34,7 @@ const fetchAndInsert = async () => {
         sold BOOLEAN,
         dateOfSale DATETIME
       );`;
-        await db.exec(createTableQuery); // for creating the table
+        await db.exec(createTableQuery); 
         console.log("Creation Successful");
     };
     
@@ -55,8 +55,7 @@ const fetchAndInsert = async () => {
        ${item.sold},
        '${item.dateOfSale.replace(/'/g, "''")}'
    );
-`; /*The .replace(/'/g, "''") in the SQL query helps prevent SQL injection attacks by escaping single quotes.*/
-
+`;
             await db.run(query);
         }
     }
