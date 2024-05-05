@@ -34,10 +34,10 @@ const fetchAndInsert = async () => {
         sold BOOLEAN,
         dateOfSale DATETIME
       );`;
-        await db.exec(createTableQuery); 
+        await db.exec(createTableQuery);
         console.log("Creation Successful");
     };
-    
+
 
     for (let item of data) {
         const queryData = `SELECT id FROM transactions WHERE id = ${item.id}`;
