@@ -9,7 +9,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const port = process.env.port || 3004;
+const PORT = process.env.PORT || 3004;
 
 
 const dbPath = path.join(__dirname, "TransactionsData.db");
@@ -75,7 +75,7 @@ const initializeDBAndServer = async () => {
             driver: sqlite3.Database,
         });
         app.listen(port, () => {
-            console.log(`Server running at http://localhost:${port}/`);
+            console.log(`Server running at http://localhost:${PORT}/`);
         });
     } catch (e) {
         console.log(`DB Error ${e.message}`);
